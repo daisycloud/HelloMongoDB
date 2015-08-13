@@ -1,2 +1,5 @@
 1, init
 2, ejs模块，可以使用.html文件
+3，创建mongodb数据库,建立表/集合 users, 插入数据.
+   当前工程安装mongoose
+   在moudels下的user.js ，作为实体类映射数据库的users集合
