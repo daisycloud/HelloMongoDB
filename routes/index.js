@@ -40,12 +40,20 @@ router.post('/homepage', function(req, res){
    })(query_doc)
 });
 
-/* write data in file */
+/* write & read data in file */
 router.get('/file', function(req, res){
     var data = 'Write data in file.txt';
     fs.writeFile('file2.txt', data, function(err){
         if(!err){
             console.log('================',data);
+        }else{
+            throw err;
+        }
+    });
+
+    fs.readFile('file.txt', 'utf-8', function(err, data){
+        if(!err){
+            res.render('readfile',{title:data});
         }else{
             throw err;
         }
