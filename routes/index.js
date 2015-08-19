@@ -32,9 +32,14 @@ router.post('/homepage', function(req, res){
               res.redirect('/');
             }else{
                 console.log(query_doc.name + ": login sucesse " + new Date());
-              res.render('homepage', {title: query_doc.name});
+              res.render('homepage', {title: query_doc});
             }
         })
    })(query_doc)
+});
+
+/* 带参数路由 */
+router.get('detail/:id', function(req, res){
+    res.send('--------------------show content for product id ' + req.params.id);
 });
 module.exports = router;
