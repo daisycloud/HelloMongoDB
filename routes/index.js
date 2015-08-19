@@ -4,6 +4,8 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var user = require('../models/user').user;
 
+var fs = require('fs');
+
 mongoose.connect('mongodb://localhost/hello-mongodb');
 
 /* GET home page. */
@@ -37,4 +39,17 @@ router.post('/homepage', function(req, res){
         })
    })(query_doc)
 });
+
+/* write data in file */
+router.get('/file', function(req, res){
+    var data = 'Write data in file.txt';
+    fs.writeFile('file2.txt', data, function(err){
+        if(!err){
+            console.log('================',data);
+        }else{
+            throw err;
+        }
+    });
+   // res.render('file', { title: data });
+})
 module.exports = router;
