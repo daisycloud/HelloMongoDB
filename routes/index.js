@@ -24,15 +24,15 @@ router.get('/logout', function(req, res){
 router.post('/homepage', function(req, res){
   var query_doc = {name: req.body.username, password: req.body.password};
     (function(){
-       // console.log('------------------------:',user.count);
 
         user.count(query_doc, function(err, doc){
-            if(doc == 1){
-                console.log(query_doc.name + ": login success in " + new Date());
-                res.render('homepage', {title: query_doc.name});
+            console.log('------------------------:',query_doc,doc);
+          if(err){
+              console.log(query_doc.name + ": login failed in " + new Date());
+              res.redirect('/');
             }else{
-                console.log(query_doc.name + ": login failed in " + new Date());
-                res.redirect('/');
+                console.log(query_doc.name + ": login sucesse " + new Date());
+              res.render('homepage', {title: query_doc.name});
             }
         })
    })(query_doc)
