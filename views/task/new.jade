@@ -1,0 +1,14 @@
+//
+   Created by yyzeng on 2015/8/19.
+h1 New task view
+
+form(method='post', action='/tasks')
+    fieldset
+        legend Add a task
+    div.clearfix
+        label Task
+        div.input
+            input(name='aaa', class='xlarge')
+         div.actions
+             input(type='submit', value='Save')
+             button(type='reset') Cancel

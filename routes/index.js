@@ -2,62 +2,38 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-var user = require('../models/user').user;
+var Task = require('../models/Task').Task;
 
-var fs = require('fs');
-
-mongoose.connect('mongodb://localhost/hello-mongodb');
+mongoose.connect('mongodb://localhost/todo');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express4.0' });
 });
 
-/* login */
-router.get('/login', function(req, res){
-    res.render('login',{title:'logiin。。。'});
-});
-/* logout */
-router.get('/logout', function(req, res){
-    res.render('logout',{title:'logout。。。'});
+/* tasks */
+router.get('/tasks/index', function(req, res){
+    Task.find({}, function(err, docs){ console.log('-----------------',docs);
+        res.render('task/index', {title:'Todos view',docs: docs})
+    })
 });
 
-/* homepage */
-router.post('/homepage', function(req, res){
-  var query_doc = {name: req.body.username, password: req.body.password};
-    (function(){
+router.get('/tasks/new', function(req, res){    console.log('222222222222222222222222222222');
 
-        user.count(query_doc, function(err, doc){
-            console.log('------------------------:',query_doc,doc);
-          if(err){
-              console.log(query_doc.name + ": login failed in " + new Date());
-              res.redirect('/');
-            }else{
-                console.log(query_doc.name + ": login sucesse " + new Date());
-              res.render('homepage', {title: query_doc.name});
-            }
-        })
-   })(query_doc)
+    res.render('task/new',{title:'New Task!'});
 });
 
-/* write & read data in file */
-router.get('/file', function(req, res){
-    var data = 'Write data in file.txt';
-    fs.writeFile('file2.txt', data, function(err){
+router.post('/tasks',  function(req, res){
+
+    console.log('==================',req.body.aaa);
+    var todo = new Task({'task':'0000'});
+    todo.save(function(err){
         if(!err){
-            console.log('================',data);
+            res.redirect('/tasks');
         }else{
-            throw err;
+            res.redirect('/tasks/new')
         }
-    });
+    })
+});
 
-    fs.readFile('file.txt', 'utf-8', function(err, data){
-        if(!err){
-            res.render('readfile',{title:data});
-        }else{
-            throw err;
-        }
-    });
-   // res.render('file', { title: data });
-})
 module.exports = router;
