@@ -1,0 +1,15 @@
+//
+   Created by yyzeng on 2015/8/19.
+- if(title)
+  h1= title
+
+- if(docs.length)
+ h2 Task
+      each task in docs
+         li #{task.task}
+
+- else
+    p You dont have any tasks!
+
+p
+  a(href='/tasks/new') Add a Task
