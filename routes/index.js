@@ -26,10 +26,10 @@ router.get('/tasks/new', function(req, res){    console.log('2222222222222222222
 router.post('/tasks',  function(req, res){
 
     console.log('==================',req.body.aaa);
-    var todo = new Task({'task':'0000'});
+    var todo = new Task({'task':req.body.aaa});
     todo.save(function(err){
         if(!err){
-            res.redirect('/tasks');
+            res.redirect('/tasks/index');
         }else{
             res.redirect('/tasks/new')
         }
