@@ -39,11 +39,11 @@ router.get('/tasks/:id/edit', function(req, res){
         res.render('task/edit', {
             title: 'Edit Task View',
             task: doc
-        });console.log('3333333333333333333333');
+        });
     });
 });
 
-router.put('/tasks/:id', function(req, res){ console.log('44444444444444444');
+//router.put('/tasks/:id', function(req, res){
     //Task.findById(req.params.id, function(err, doc){
     //    doc.task = req.body.task.task;
     //    doc.save(function(err){
@@ -54,15 +54,15 @@ router.put('/tasks/:id', function(req, res){ console.log('44444444444444444');
     //        }
     //    })
     //});
-});
+//});
 
-router.del('/tasks/:id', function(req, res){
-    Task.findById('req.params.id', function(err, doc){
-        if(!doc) return next(new NotFound('Document not found'));
-        doc.remove(function(){
-            res.redirect('/tasks/index');
-        })
-    });
-});
+//router.del('/tasks/:id', function(req, res){
+//    Task.findById('req.params.id', function(err, doc){
+//        if(!doc) return next(new NotFound('Document not found'));
+//        doc.remove(function(){
+//            res.redirect('/tasks/index');
+//        })
+//    });
+//});
 
 module.exports = router;
