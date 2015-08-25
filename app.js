@@ -39,6 +39,11 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+//启用Express会话
+//app.use(express.cookieParser());
+//app.use(express.session({secret:'OzhCLfxlGp9TtzSXmJtq'}));
+//app.use(express.cookieParser('keyboard cat'));
+//app.use(express.session({ cookie: { maxAge: 60000 }}));
 // error handlers
 
 // development error handler

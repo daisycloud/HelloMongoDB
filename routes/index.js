@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* tasks */
-router.get('/tasks/index', function(req, res){
+router.get('/tasks', function(req, res){
     Task.find({}, function(err, docs){
         res.render('task/index', {title:'Todos view',docs: docs})
     })
@@ -23,12 +23,13 @@ router.get('/tasks/new', function(req, res){
 });
 
 router.post('/tasks',  function(req, res){
-
     var todo = new Task({'task':req.body.aaa});
     todo.save(function(err){
         if(!err){
-            res.redirect('/tasks/index');
+           // req.flash('info', 'Task created');
+            res.redirect('/tasks');
         }else{
+           // req.flash('warning', err);
             res.redirect('/tasks/new')
         }
     })
@@ -48,7 +49,7 @@ router.get('/tasks/:id/edit', function(req, res){
     //    doc.task = req.body.task.task;
     //    doc.save(function(err){
     //        if(!err){
-    //             res.redirect('/tasks/index');
+    //             res.redirect('/tasks');
     //        }else{
     //            //err handling
     //        }
@@ -60,7 +61,7 @@ router.get('/tasks/:id/edit', function(req, res){
 //    Task.findById('req.params.id', function(err, doc){
 //        if(!doc) return next(new NotFound('Document not found'));
 //        doc.remove(function(){
-//            res.redirect('/tasks/index');
+//            res.redirect('/tasks');
 //        })
 //    });
 //});

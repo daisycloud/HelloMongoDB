@@ -18,3 +18,7 @@
 
 p
   a(href='/tasks/new') Add a Task
+
+  - if(typeof flash != 'undefined')
+    include ../mixins/flash-messages
+    mixin flash-messages(flash)
