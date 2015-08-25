@@ -1,0 +1,15 @@
+//
+   Created by yyzeng on 2015/8/24.
+- if(title)
+  h1= title
+form(method="post", action="/tasks/" + task.id)
+    input(name="_method", value="PUT", type="hidden")
+    fieldset
+        legend Editing task
+        div.clearfix
+            label Task
+            div.input
+                input(name="task[task]", value="#{task.task}")
+            div.actions
+                 input(type="submit", value="Save")
+                 button(type="reset") Cancel

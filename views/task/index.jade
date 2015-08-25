@@ -6,7 +6,9 @@
 - if(docs.length)
  h2 Task
       each task in docs
-         li #{task.task}
+         li(style="display:inline") #{task.task}
+         a(href="/tasks/#{task.id}/edit") Edit
+         br
 
 - else
     p You dont have any tasks!

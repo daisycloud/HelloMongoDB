@@ -13,19 +13,17 @@ router.get('/', function(req, res, next) {
 
 /* tasks */
 router.get('/tasks/index', function(req, res){
-    Task.find({}, function(err, docs){ console.log('-----------------',docs);
+    Task.find({}, function(err, docs){
         res.render('task/index', {title:'Todos view',docs: docs})
     })
 });
 
-router.get('/tasks/new', function(req, res){    console.log('222222222222222222222222222222');
-
+router.get('/tasks/new', function(req, res){
     res.render('task/new',{title:'New Task!'});
 });
 
 router.post('/tasks',  function(req, res){
 
-    console.log('==================',req.body.aaa);
     var todo = new Task({'task':req.body.aaa});
     todo.save(function(err){
         if(!err){
@@ -35,5 +33,27 @@ router.post('/tasks',  function(req, res){
         }
     })
 });
+
+router.get('/tasks/:id/edit', function(req, res){
+    Task.findById(req.params.id, function(err, doc){
+        res.render('task/edit', {
+            title: 'Edit Task View',
+            task: doc
+        });console.log('3333333333333333333333');
+    });
+});
+
+router.put('/tasks/:id', function(req, res){ console.log('44444444444444444');
+    //Task.findById(req.params.id, function(err, doc){
+    //    doc.task = req.body.task.task;
+    //    doc.save(function(err){
+    //        if(!err){
+    //             res.redirect('/tasks/index');
+    //        }else{
+    //            //err handling
+    //        }
+    //    })
+    //});
+})
 
 module.exports = router;
