@@ -8,6 +8,9 @@
       each task in docs
          li(style="display:inline") #{task.task}
          a(href="/tasks/#{task.id}/edit") Edit
+         form(method="post", action="/tasks/" + task.id)
+             input(name="_method", value="DELETE", type="hidden")
+             button.btn(type="submit") Delete
          br
 
 - else

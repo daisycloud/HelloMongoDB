@@ -54,6 +54,15 @@ router.put('/tasks/:id', function(req, res){ console.log('44444444444444444');
     //        }
     //    })
     //});
-})
+});
+
+router.del('/tasks/:id', function(req, res){
+    Task.findById('req.params.id', function(err, doc){
+        if(!doc) return next(new NotFound('Document not found'));
+        doc.remove(function(){
+            res.redirect('/tasks/index');
+        })
+    });
+});
 
 module.exports = router;
